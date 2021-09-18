@@ -1,0 +1,18 @@
+.choice-list {
+    
+    max-width: 50%;
+}
+
+.choice-list-options {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    overflow: hidden;
+    flex-wrap: wrap;
+}
+
+.choice-list-element {
+    text-align: left;
+    flex-shrink: 3;
+    user-select: none;
+}
