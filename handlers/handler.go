@@ -13,8 +13,9 @@ func Menu(w http.ResponseWriter, r *http.Request) {
 func AddMenuItem(w http.ResponseWriter, r *http.Request) {
 
 }
-func Endpoints() {
+func Endpoints() http.Handler {
 	mux := mux.NewRouter().StrictSlash(true)
-	mux.HandleFunc("/", Menu)
+	mux.HandleFunc("/menu/", Menu)
 	mux.HandleFunc("/addMenuItem/", AddMenuItem)
+	return mux
 }
