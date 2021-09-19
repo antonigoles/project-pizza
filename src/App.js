@@ -1,7 +1,7 @@
 import './App.css';
 import MainPage from './MainPage/MainPage';
 import React from "react";
-import NotFound from './Common/NotFound';
+import NotFound from './Common/Errors/NotFound';
 
 import {
   Route, BrowserRouter as Router, Switch

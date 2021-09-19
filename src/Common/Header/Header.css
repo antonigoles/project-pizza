@@ -29,23 +29,5 @@
     user-select: none;
 }
 
-.header-checkout {
-    display: flex;
-    align-items: center;
-    background-color: black;
-    border-radius: 20px;
-    padding: 10px 15px 10px 15px;
-    color: white;
-    user-select: none;
-}
 
-.header-checkout-img {
-    width: 20px;
-    padding-right: 5px;
-    user-select: none;
-}
 
-.header-checkout:hover {
-    background-color: rgb(51, 50, 50);
-    cursor: pointer;
-}

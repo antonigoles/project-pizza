@@ -1,5 +1,5 @@
 import MenuList from './MenuList/MenuList.js'
-import Header from '../Common/Header.js';
+import Header from '../Common/Header/Header.js';
 
 
 function MainPage() {

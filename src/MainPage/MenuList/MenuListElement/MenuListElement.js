@@ -11,25 +11,19 @@ function MenuListElement({
         id
     }) {
 
-    const parsePrice = ( n ) => {
-        let z = Math.round(n)
-        if ( n === z && z !== 0) return n.toString() + ",00"
-        let w = n.toString().replaceAll('.',',')
-        if ( w[w.length-2] === "," ) w += "0"
-        return w.slice(0, w.indexOf(',')+3)
-    }
+    
 
     const updatePrice = ( size ) => {
         let prc = price + sizes[choosenSize][1];
         selectedOptions.map( (e) => { prc += toppings[e].price } )
-        setParsedPrice( parsePrice(prc) )
+        setParsedPrice( Utils.parsePrice(prc) )
     }
 
     const handleBuyClick = () => {
         
     }
 
-    const [parsedPrice, setParsedPrice] = useState(parsePrice(price))
+    const [parsedPrice, setParsedPrice] = useState(Utils.parsePrice(price))
     const [choosenSize, setChoosenSize] = useState(0)
     const [optionsVisible, setOptionsVisible] = useState(false)
     const [selectedOptions, setSelectedOptions] = useState([])

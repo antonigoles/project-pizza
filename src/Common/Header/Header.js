@@ -1,4 +1,5 @@
 import './Header.css'
+import CheckoutButton from './CheckoutButton/CheckoutButton';
 
 function Header() {
     return (
@@ -8,10 +9,7 @@ function Header() {
                 Pizza Project
             </div>
             <div className="header-router">
-                <div className="header-checkout">
-                    <img src="shoppingCart.png" alt="cart" className="header-checkout-img" />
-                    checkout
-                </div>
+                <CheckoutButton/>
             </div>        
         </div>
     )

@@ -1,0 +1,27 @@
+.checkout-button-list-element {
+    width: 100%;
+    height: 2vw;
+    color: black;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid rgb(235, 232, 232);
+    margin-top: 15px;
+    font-size: 0.8vw;
+}
+
+.checkout-button-list-element-order-name {
+    padding-left: 15px;
+    font-weight: bold;
+}
+
+.checkout-button-list-element-order-price {
+    padding-right: 15px;
+    font-style: italic;
+}
+
+.checkout-button-list-element-order-toppings {
+    display: flex;
+    width: 30%;
+    overflow-x: hidden;
+    color: rgb(163, 162, 162);
+}

@@ -1,0 +1,44 @@
+.checkout-button-list {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.616);
+    position: fixed;
+    left: 0;
+    top: 0;
+}
+
+.checkout-button-list:hover { cursor: auto;}
+
+.checkout-button-list-window {
+    background-color: white;
+    width: 30vw;
+    height: 40vh;
+    position: absolute;
+    border: 1px solid rgb(211, 208, 208);
+    right: 35vw;
+    top: 25vh;
+}
+
+.checkout-button-list-close-btn-container {
+    color: black;
+    text-align: right;
+    font-size: large;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    border-bottom: 1px solid rgb(202, 202, 202);
+    height: 2vw;
+}
+
+.checkout-button-list-close-btn {
+    align-self: right;
+    padding: 10px 15px;
+}
+
+.checkout-button-list-close-btn:hover { cursor: pointer;}
+
+.checkout-button-list-elements {
+    height: 30vh;
+    overflow-y: scroll;
+}
+
