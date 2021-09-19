@@ -1,12 +1,38 @@
 import './MenuListElement.css'
 import ChoiceList from '../../../Common/ChoiceList'
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import Utils from '../../../Utils';
 
-function MenuListElement({itemName, price="25,00", toppings=[], sizes=[], id}) {
+function MenuListElement({
+        itemName /* string */, 
+        price=25 /* Number */, 
+        toppings=[] /* [string, Number] */, 
+        sizes=[] /* [Number, Number] */, 
+        id
+    }) {
 
-    const [parsedPrice, setParsedPrice] = useState(price)
+    const parsePrice = ( n ) => {
+        let z = Math.round(n)
+        if ( n === z && z !== 0) return n.toString() + ",00"
+        let w = n.toString().replaceAll('.',',')
+        if ( w[w.length-2] === "," ) w += "0"
+        return w.slice(0, w.indexOf(',')+3)
+    }
+
+    const updatePrice = ( size ) => {
+        let prc = price + sizes[choosenSize][1];
+        selectedOptions.map( (e) => { prc += toppings[e].price } )
+        setParsedPrice( parsePrice(prc) )
+    }
+
+    const handleBuyClick = () => {
+        
+    }
+
+    const [parsedPrice, setParsedPrice] = useState(parsePrice(price))
     const [choosenSize, setChoosenSize] = useState(0)
-
+    const [optionsVisible, setOptionsVisible] = useState(false)
+    const [selectedOptions, setSelectedOptions] = useState([])
 
     //TODO: Make price format verification
     // here
@@ -20,9 +46,7 @@ function MenuListElement({itemName, price="25,00", toppings=[], sizes=[], id}) {
         })
     }
 
-    const handleBuyClick = () => {
-        
-    }
+    useEffect( updatePrice, [choosenSize, selectedOptions] )
 
     return (
         <div className="menu-list-item">
@@ -35,27 +59,41 @@ function MenuListElement({itemName, price="25,00", toppings=[], sizes=[], id}) {
             <div className="menu-list-item-right-box">
                 <div className="menu-item-info-box">
                     <div className="menu-list-item-name">{itemName}</div>
-                    <div onClick={handleBuyClick} className="menu-list-item-buybtn"> {parsedPrice} zł</div>
+                    <div onClick={handleBuyClick} className="menu-list-item-buybtn"> +{parsedPrice} zł</div>
                 </div> 
                 <div className="menu-list-item-custom-options">
-                    <div className="menu-list-item-button-toppings">
-                        <ChoiceList title="Toppings: " choices={parsedToppings} />
+                    <div onClick={() => {setOptionsVisible( !optionsVisible )}} className="menu-list-item-custom-options-showbtn"> 
+                        { optionsVisible ? "Hide options" : "Show options" } 
                     </div>
-                    <div className="menu-list-item-button-size">
-                        Size:
-                        <div className="size-list">
-                        { 
-                            sizes.map( (e,index) => {
-                                let sel = index === choosenSize
-                                return (
-                                    <div onClick={ () => { setChoosenSize(index) }} className={ 
-                                        sel ? "size-button size-button-selected" : "size-button" 
-                                    } key={index}>
-                                        {e} cm
-                                    </div>
-                                )
-                            })
-                        }                           
+                    <div className="menu-list-item-custom-options-helperbox" style={{
+                        height: optionsVisible ? `100%` : `0`,
+                        opacity: optionsVisible ? `1.0` : `0`,
+                    }}>
+                        <div className="menu-list-item-button-toppings">
+                            <ChoiceList changeHandler={ (n) => { 
+                                if ( selectedOptions.includes(n) ) Utils.removeItemOnce( selectedOptions, n )
+                                else selectedOptions.push(n)
+                                updatePrice()
+                            } } title="Toppings: " choices={parsedToppings} />
+                        </div>
+                        <div className="menu-list-item-button-size">
+                            Size:
+                            <div className="size-list">
+                            { 
+                                sizes.map( (e,index) => {
+                                    let selected = index === choosenSize
+                                    return (
+                                        <div onClick={ () => {   
+                                            setChoosenSize(index)
+                                        }} className={ 
+                                            selected ? "size-button size-button-selected" : "size-button" 
+                                        } key={index}>
+                                            {e[0]} cm
+                                        </div>
+                                    )
+                                })
+                            }                           
+                            </div>
                         </div>
                     </div>
                 </div>
