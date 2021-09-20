@@ -35,12 +35,17 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: all 0.1s;
 
 }
 
 .menu-list-item-buybtn:hover {
     background-color: #5dad5d;
     cursor: pointer;
+}
+
+.menu-list-item-buybtn:active {
+    background-color: #73d673;
 }
 
 .menu-list-item-right-box {

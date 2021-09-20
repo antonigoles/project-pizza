@@ -5,6 +5,9 @@ import Utils from '../../../Utils';
 import CartManager from '../../../Common/CartManager';
 import OrderItem from '../../../Models/OrderItem';
 import MenuItem from '../../../Models/MenuItem';
+import { ToastContainer, toast } from 'react-toastify'
+import { injectStyle } from "react-toastify/dist/inject-style";
+injectStyle();
 
 function MenuListElement({
         itemName /* string */, 
@@ -26,6 +29,16 @@ function MenuListElement({
         let toppingsChoosen = selectedOptions.map( e => { return toppings[e] })
         let orderItem = new OrderItem(new MenuItem(itemName, sizes, price), toppingsChoosen, choosenSize )
         CartManager.addOrderItemToLocalStorage( orderItem )
+
+        toast.success(`Added ${itemName} to the Cart`, {
+            position: "bottom-right",
+            autoClose: 2000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
     }
 
     const [parsedPrice, setParsedPrice] = useState(Utils.parsePrice(price))
@@ -49,6 +62,17 @@ function MenuListElement({
 
     return (
         <div className="menu-list-item">
+            <ToastContainer
+                position="bottom-right"
+                autoClose={2000}
+                hideProgressBar
+                newestOnTop
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
             <div className="menu-list-item-image" 
                 style={{
                     backgroundImage: `url("pizza-thumbnail.png")`,
