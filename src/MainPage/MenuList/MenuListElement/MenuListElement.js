@@ -2,6 +2,9 @@ import './MenuListElement.css'
 import ChoiceList from '../../../Common/ChoiceList'
 import React, { useEffect, useState } from 'react';
 import Utils from '../../../Utils';
+import CartManager from '../../../Common/CartManager';
+import OrderItem from '../../../Models/OrderItem';
+import MenuItem from '../../../Models/MenuItem';
 
 function MenuListElement({
         itemName /* string */, 
@@ -20,7 +23,9 @@ function MenuListElement({
     }
 
     const handleBuyClick = () => {
-        
+        let toppingsChoosen = selectedOptions.map( e => { return toppings[e] })
+        let orderItem = new OrderItem(new MenuItem(itemName, sizes, price), toppingsChoosen, choosenSize )
+        CartManager.addOrderItemToLocalStorage( orderItem )
     }
 
     const [parsedPrice, setParsedPrice] = useState(Utils.parsePrice(price))
