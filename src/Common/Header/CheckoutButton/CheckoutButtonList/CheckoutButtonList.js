@@ -4,8 +4,13 @@ import CheckoutButtonListElement from "./CheckoutButtonListElement/CheckoutButto
 import CartManager from '../../../CartManager.js'
 import { useState } from "react";
 import { ToastContainer, toast } from 'react-toastify'
+import {
+    Link
+} from "react-router-dom";
+
 import { injectStyle } from "react-toastify/dist/inject-style";
 injectStyle();
+
 
 
 function CheckoutButtonList({hideCheckoutList}) {
@@ -77,6 +82,13 @@ function CheckoutButtonList({hideCheckoutList}) {
                             )
                         } 
                     </div>
+                    <Link style={{ color: 'inherit', textDecoration: 'inherit' }} to="/checkout">
+                        <div style={{
+                        opacity: cartStatus.length > 0 ? `1.0` : `0`, 
+                        }} className="checkout-button-list-proceed-button-container">
+                            <div className="checkout-button-list-proceed-button">Go to checkout</div>
+                        </div>
+                    </Link>
                 </div>
                 
             </div>

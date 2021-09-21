@@ -7,13 +7,19 @@
     border-bottom: 1px solid rgb(235, 232, 232);
     padding-top: 15px;
     font-size: 0.8vw;
-    transition: background-color 0.1s, margin-left 0.2s, color 0.2s;
+    transition: background-color 0.1s, margin-left 0.2s, color 0.2s, height 0.1s, width 0.1s;
 }
 
 .checkout-button-list-element:hover {
     background-color: rgb(247, 66, 66);
     color: white !important;
     margin-left: 25px;  
+    text-decoration: line-through;
+}
+
+.checkout-button-list-element:active {
+    background-color: rgb(133, 29, 29);
+    color: white !important;
 }
 
 .checkout-button-list-element-order-name {
